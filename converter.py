@@ -1,9 +1,16 @@
+import scipy.io.wavfile as wv
+from matplotlib.pyplot import specgram
 import soundfile as sf
-import csv
+import scipy
+from scikits.talkbox.features import mfcc
 import os
+import csv
+import numpy as np
 
-outfile = open("testing.csv", 'wb')
+outfile = open("testing1.csv", 'wb')
 outputWriter = csv.writer(outfile) 
+outfile2 = open("testing2.csv", 'wb')
+outputWriter2 = csv.writer(outfile2)
 
 path = "./testing/"
 dirs = os.listdir(path)
