@@ -10,4 +10,4 @@ dirs = os.listdir(path)
 for f in dirs:
 	if f !='.DS_Store':
 		data, samplerate = sf.read(path+f)
-		outputWriter.writerow(data)
+		outputWriter.writerow(data[:1000])
