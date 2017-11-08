@@ -19,8 +19,10 @@ outputWriter2 = csv.writer(outfile2)
 current, dirs, files = os.walk('./genres/').next()
 for dir in dirs:
 	current, dirs2, files2 = os.walk('./genres/'+dir).next()
+	print dir
 	for f in files2:
 		if f !='.DS_Store':
+			print f
 			data, samplerate = sf.read('./genres/'+dir+'/'+f)
 			x=abs(scipy.fft(data)[:1000])
 			outputWriter.writerow(np.append(x[:1000],dir))
