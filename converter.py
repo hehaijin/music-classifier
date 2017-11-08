@@ -7,9 +7,9 @@ import os
 import csv
 import numpy as np
 
-outfile = open("testing1.csv", 'wb')
+outfile = open("testingFFT.csv", 'wb')
 outputWriter = csv.writer(outfile) 
-outfile2 = open("testing2.csv", 'wb')
+outfile2 = open("testingMFCC.csv", 'wb')
 outputWriter2 = csv.writer(outfile2)
 
 path = "./testing/"
