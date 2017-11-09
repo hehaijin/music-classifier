@@ -19,6 +19,9 @@ with open(inputfile) as csvfile:
 			
 dataarray=np.array(data,dtype='float32')
 (h,w)=dataarray.shape
+
+#this is to deal with a special case where the result from mfcc is infinity. 
+#not sure how it happened.
 for i in range(h):
 	for j in range(w):
 		if np.isinf(dataarray[i,j]):
