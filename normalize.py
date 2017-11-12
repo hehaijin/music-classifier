@@ -15,6 +15,8 @@ labels=[]
 with open(inputfile) as csvfile:
 		trainreader = csv.reader(csvfile)
 		for row in trainreader:
+			// // For testing files without "class", use line 17 and comment line 18-20
+			// data.append(row)
 			l=len(row)
 			data.append(row[0:l-1])
 			labels.append(row[l-1])
@@ -59,5 +61,6 @@ header.append("genre")
 outputWriter.writerow(header)
 
 for i in range(h):
+	// // For testing files, use line 54, comment line 55
+	// outputWriter.writerow(np.append(result[i],"?"))
 	outputWriter.writerow(np.append(result[i],labels[i]))
-
