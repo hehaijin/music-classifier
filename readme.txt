@@ -1,1 +1,1 @@
-just tried to extract the features and store as csv
+Music genre classification using GTZAN dataset.

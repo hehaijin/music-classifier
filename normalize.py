@@ -8,6 +8,8 @@ inputfile=sys.argv[1]
 #inputfile='./output.csv'
 output=sys.argv[2]
 
+#withlabel=sys.argv[3]
+
 data=[]
 labels=[]
 with open(inputfile) as csvfile:
@@ -46,6 +48,15 @@ for i in range(h):
 #outfile = open("normalized1.csv", 'wb')
 outfile = open(output, 'wb')
 outputWriter = csv.writer(outfile)
+
+#adding header column
+
+header=[]
+for i in range(w):
+	header.append("feature"+str(i))
+header.append("genre")
+	
+outputWriter.writerow(header)
 
 for i in range(h):
 	outputWriter.writerow(np.append(result[i],labels[i]))
