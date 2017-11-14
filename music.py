@@ -12,6 +12,8 @@ outfile = open("output.csv", 'wb')
 outputWriter = csv.writer(outfile)
 outfile2 = open("output2.csv", 'wb')
 outputWriter2 = csv.writer(outfile2)
+outfile3 = open("output3.csv", 'wb')
+outputWriter3 = csv.writer(outfile3)
 
 
 
@@ -30,6 +32,8 @@ for dir in dirs:
 			num_ceps=ceps.shape[0]
 			y=np.mean(ceps[int(num_ceps/10): int(num_ceps*9/10)],axis=0)
 			outputWriter2.writerow(np.append(y,dir))
+			# raw data for method 3 normalize3.py
+			outputWriter3.writerow(np.append(data,dir))
 			
 
 
