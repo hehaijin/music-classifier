@@ -32,7 +32,7 @@ for dir in dirs:
 			num_ceps=ceps.shape[0]
 			y=np.mean(ceps[int(num_ceps/10): int(num_ceps*9/10)],axis=0)
 			outputWriter2.writerow(np.append(y,dir))
-			# raw data for method 3 normalize3.py
+			# raw data input for music3.py
 			outputWriter3.writerow(np.append(data,dir))
 			
 
