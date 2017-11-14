@@ -1,5 +1,5 @@
 from sklearn.decomposition import PCA
-from sklearn.preprocessing import normalize
+# from sklearn.preprocessing import normalize
 import numpy as np
 import pywt
 import sys
@@ -12,7 +12,7 @@ output = csv.writer(csvfile)
 
 data = []
 label = []
-# output3.csv: raw data from .au file
+# output3.csv: generated from music.py 
 csvfile = open("output3.csv", 'rb')
 csvreader = csv.reader(csvfile)
 
