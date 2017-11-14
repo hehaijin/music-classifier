@@ -19,6 +19,8 @@ csvreader = csv.reader(csvfile)
 for row in csvreader:
 	row = np.array(row)
 	row1 = row[:-1].astype(float)
+	# For testing file, comment line 21, use line 23
+	# row1 = row.astype(float)
 	# discrete wavelet transform the data
 	(cA, cD) = pywt.dwt(row1,'haar')
 	data.append(abs(cA)[:1000])
@@ -34,3 +36,5 @@ data = pca.fit_transform(data);
 
 for i in range(len(label)):
 	output.writerow(np.append(data[i],label[i]))
+	# For testing file, comment line 38, use line 40
+	# output.writerow(data[i])
