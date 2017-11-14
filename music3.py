@@ -34,7 +34,9 @@ data = np.nan_to_num(data)
 pca = PCA(n_components=50)
 data = pca.fit_transform(data);
 
+
 for i in range(len(label)):
 	output.writerow(np.append(data[i],label[i]))
-	# For testing file, comment line 38, use line 40
-	# output.writerow(data[i])
+# For testing file, comment line 38 and 39, use line 41 and 42
+# for i in range(100):
+# 	output.writerow(data[i])
