@@ -9,7 +9,7 @@ np.seterr(divide='ignore', invalid='ignore')
 from sklearn.model_selection import cross_val_score
 from sklearn.model_selection import cross_val_predict
 
-
+#do z-score normalize across features.
 def mynormalize(dataarray,testdata):
 	
 	(h,w)=dataarray.shape
@@ -43,7 +43,7 @@ def removeinfnan(dataarray):
 				dataarray[i,j]=0
 	return dataarray
 	
-	
+#generate submission file, 10 fold cross validation accuracy and confusion matrix	
 def answergenerate(clf,data,target,testdata,clfname,featurename):
 	#feature is the name, like "fft" "mfcc" "dw"
 	print clfname+" "+featurename
