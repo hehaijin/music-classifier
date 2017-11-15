@@ -6,6 +6,9 @@ from sklearn.preprocessing import normalize
 from sklearn import svm
 from sklearn.metrics import confusion_matrix
 np.seterr(divide='ignore', invalid='ignore')
+from sklearn.model_selection import cross_val_score
+from sklearn.model_selection import cross_val_predict
+
 
 def mynormalize(dataarray,testdata):
 	
@@ -54,7 +57,14 @@ def answergenerate(clf,data,target,testdata,clfname,featurename):
 		  correct+=1
 	print float(correct)/len(target)
 	
-	cfmatrix=confusion_matrix(target,predict)
+	scores = cross_val_score(clf, data,target, cv=10)
+	print("10 fold Accuracy: %0.2f (+/- %0.2f)" % (scores.mean(), scores.std() * 2))
+	
+	y_pred = cross_val_predict(clf,data,target,cv=10)
+	cfmatrix = confusion_matrix(target,y_pred)
+	
+	
+	#cfmatrix=confusion_matrix(target,predict)
 	f="./newresults/"+"confusionmatrix_"+clfname+"_"+featurename+".csv"
 	outfile = open(f, 'wb')
 	outputWriter = csv.writer(outfile)
@@ -119,11 +129,11 @@ for i in range(1,4):
 	
 	
 	#2 normalize methods
-	#(data,testdata)=mynormalize(data,testdata)
+	(data,testdata)=mynormalize(data,testdata)
 	
 	#library normalize
-	data=normalize(data)
-	testdata=normalize(testdata)
+	#data=normalize(data)
+	#testdata=normalize(testdata)
 	
 	target = np.array(labels)
 	
