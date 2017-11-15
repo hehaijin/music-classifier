@@ -1,4 +1,4 @@
-#the purpose of the script is to generate 6 csv files for machine learning.
+#the purpose of the script is to generate 6 csv files for classification.
 #3 training and 3 testing.
 
 import scipy.io.wavfile as wv
