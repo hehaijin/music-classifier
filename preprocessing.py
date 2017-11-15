@@ -37,18 +37,18 @@ for dir in dirs:
 			data=normalize(data[:,np.newaxis],axis=1).ravel()
 			#x=abs(scipy.fft(data)[:1000])
 			#outputWriter.writerow(np.append(x[:1000],dir))
-			ceps,mspec,spec=mfcc(data)
-			num_ceps=ceps.shape[0]
-			y=np.mean(ceps[int(num_ceps/10): int(num_ceps*9/10)],axis=0)
-			y=np.nan_to_num(y)
+			#ceps,mspec,spec=mfcc(data)
+			#num_ceps=ceps.shape[0]
+			#y=np.mean(ceps[int(num_ceps/10): int(num_ceps*9/10)],axis=0)
+			#y=np.nan_to_num(y)
 			
-			outputWriter2.writerow(np.append(y,dir))
+			#outputWriter2.writerow(np.append(y,dir))
 			# raw data input for music3.py
 			(cA, cD) = pywt.dwt(data,'haar')
 			feature3data.append(abs(cA[:10000]))
 			#outputWriter3.writerow(np.append(abs(cA)[:1000],dir))
 feature3data=np.array(feature3data)
-pca = PCA(n_components=1000)
+pca = PCA(n_components=500)
 feature3data = pca.fit_transform(feature3data);		
 for i in range(feature3data.shape[0]):
 	outputWriter3.writerow(np.append(feature3data[i],labels[i]))
@@ -80,7 +80,7 @@ for f in dirs:
 		#y=np.mean(ceps[int(num_ceps/10): int(num_ceps*9/10)],axis=0)
 		#y=np.nan_to_num(y)
 		
-		outputWriter2.writerow(y)
+		#outputWriter2.writerow(y)
 		# testing file to be used for DWT & PCA
 		(cA, cD) = pywt.dwt(data,'haar')
 		feature3datatest.append(abs(cA[:10000]))
@@ -88,9 +88,9 @@ for f in dirs:
 		
 
 feature3datatest=np.array(feature3datatest)
-pca = PCA(n_components=1000)
-feature3datatest = pca.fit_transform(feature3datatest)
-	
+print feature3datatest.shape
+feature3datatest = pca.transform(feature3datatest)
+print feature3datatest.shape
 for i in range(feature3datatest.shape[0]):
 	outputWriter3.writerow(feature3datatest[i])
 

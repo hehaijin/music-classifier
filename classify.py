@@ -4,6 +4,7 @@ import math
 from sklearn.naive_bayes import GaussianNB
 from sklearn.preprocessing import normalize
 from sklearn import svm
+from sklearn.metrics import confusion_matrix
 np.seterr(divide='ignore', invalid='ignore')
 
 def mynormalize(dataarray,testdata):
@@ -45,11 +46,23 @@ def answergenerate(clf,data,target,testdata,clfname,featurename):
 	print clfname+" "+featurename
 	clf.fit(data, target)
 	correct = 0;
+	predict=[]
 	for i in range(len(target)):
 	  y_pred = clf.predict([data[i]])
+	  predict.append(y_pred[0])
 	  if (y_pred[0]==target[i]):
 		  correct+=1
 	print float(correct)/len(target)
+	
+	cfmatrix=confusion_matrix(target,predict)
+	f="./newresults/"+"confusionmatrix_"+clfname+"_"+featurename+".csv"
+	outfile = open(f, 'wb')
+	outputWriter = csv.writer(outfile)
+	for i in range(cfmatrix.shape[0]):
+		outputWriter.writerow(cfmatrix[i])
+	
+	
+	
 	# start classify testing data
 	data_test = []
 	name = []
@@ -62,9 +75,14 @@ def answergenerate(clf,data,target,testdata,clfname,featurename):
 	outfile = open(f, 'wb')
 	outputWriter = csv.writer(outfile)
 	outputWriter.writerow(["id","class"])
+	#print testdata.shape
 	for i in range(len(testdata)):
 	  y_pred = clf.predict([testdata[i]])
 	  outputWriter.writerow([name[i],y_pred[0]])
+	
+	
+	
+	
 	
 	
 	
