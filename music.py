@@ -33,7 +33,8 @@ for dir in dirs:
 			y=np.mean(ceps[int(num_ceps/10): int(num_ceps*9/10)],axis=0)
 			outputWriter2.writerow(np.append(y,dir))
 			# raw data input for music3.py
-			outputWriter3.writerow(np.append(data,dir))
+			(cA, cD) = pywt.dwt(data,'haar')
+			outputWriter3.writerow(np.append(abs(cA)[:1000],dir))
 			
 
 
